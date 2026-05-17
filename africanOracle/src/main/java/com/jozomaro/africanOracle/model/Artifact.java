@@ -1,4 +1,4 @@
-package com.jozomaro.africanOracle;
+package com.jozomaro.africanOracle.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -10,10 +10,13 @@ public class Artifact {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private String culture;
-    private String material;
+    private String type; // Artifact Type
+    private String museumNum; // Artifact Number
+    private String title; // Artifact Title
 
-    @Column(length = 2000) // To Accomodate for long descriptions in data
-    private String description;
+    @Column(columnDefinition = "TEXT") // To Accomodate for long descriptions. Handles unlimited text length
+    private String description; // Artifact Description
+
+    private String place; // Artifact Production Place
+    private String materials; // Artifact Materials
 }
