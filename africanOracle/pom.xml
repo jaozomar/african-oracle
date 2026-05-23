@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.0</version>
+        <version>4.0.6</version>
         <relativePath/>
     </parent>
 
@@ -20,11 +20,12 @@
     <description>African Oracle Project</description>
 
     <properties>
-        <java.version>21</java.version>
-        <spring-ai.version>1.0.0-M6</spring-ai.version>
+        <java.version>25</java.version>
+        <spring-ai.version>2.0.0-M4</spring-ai.version>
     </properties>
 
-    <dependencyManagement>
+    <!-- Import Spring AI BOM for dependency management -->
+   <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.springframework.ai</groupId>
@@ -37,6 +38,10 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
 
         <!-- Web -->
         <dependency>
@@ -50,6 +55,12 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+        <!-- Spring AI OpenAI-->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-model-openai</artifactId>
+        </dependency>
+
         <!-- H2 Database -->
         <dependency>
             <groupId>com.h2database</groupId>
@@ -57,17 +68,17 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- JDBC -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-        </dependency>
-
-        <!-- Spring AI OpenAI -->
-        <dependency>
-            <groupId>org.springframework.ai</groupId>
-            <artifactId>spring-ai-openai-spring-boot-starter</artifactId>
         </dependency>
 
         <!-- CSV -->
@@ -94,14 +105,15 @@
             </plugin>
         </plugins>
     </build>
-    <!---
+    
     <repositories>
+        <!--Spring Milestones Repository for Spring AI dependencies -->
         <repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
             <url>https://repo.spring.io/milestone</url>
         </repository>
     </repositories>
-    -->
+    
 
 </project>
