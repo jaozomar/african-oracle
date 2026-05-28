@@ -8,18 +8,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jozomaro.africanOracle.model.Artifact;
-import com.jozomaro.africanOracle.repository.ArtifactRepository;    
+import com.jozomaro.africanOracle.repository.ArtifactRepository;
+import com.jozomaro.africanOracle.service.AnalyticsService;
+import com.jozomaro.africanOracle.model.Analytics;
 
 @RestController
 public class OracleController {
     private final ChatClient chatClient;
     private final ArtifactRepository artifactRepository; // Repository to access artifacts from the database
+    private final AnalyticsService analyticsService;
 
     // 'Builder' for the controller, Spring will automatically inject the ChatClient bean when it creates an instance of this controller
     // Spring AI uses my API Key to configure the Builder
-    public OracleController(ChatClient.Builder builder, ArtifactRepository artifactRepository) {
+    public OracleController(ChatClient.Builder builder, ArtifactRepository artifactRepository, AnalyticsService analyticsService) {
         this.chatClient = builder.build();
         this.artifactRepository = artifactRepository;
+        this.analyticsService = analyticsService;
     }
 
     @GetMapping("/ask")
@@ -45,4 +49,9 @@ public class OracleController {
                 .call()
                 .content();
     }   
+
+    @GetMapping("/api/analytics/materials")
+    public List<Analytics> getMaterialsAnalytics() {
+        return analyticsService.getCleanedMaterialAnalytics();
+    }
 }
