@@ -54,4 +54,9 @@ public class OracleController {
     public List<Analytics> getMaterialsAnalytics() {
         return analyticsService.getCleanedMaterialAnalytics();
     }
+
+    @GetMapping("/api/analytics/places")
+    public List<Analytics> getPlaceAnalytics() {
+        return analyticsService.getCleanedPlaceAnalytics();
+    }
 }
